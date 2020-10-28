@@ -1,24 +1,26 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@300&display=swap");
 
 body {
-    background-image: url("http://kusg.de/wp-content/uploads/2017/01/wallpaper-basketball4-1050x591.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: blanchedalmond;
-    text-align: justify;
-    font-family: 'Spartan', sans-serif;;
+  background-image: url("http://kusg.de/wp-content/uploads/2017/01/wallpaper-basketball4-1050x591.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: blanchedalmond;
+  text-align: justify;
+  font-family: "Spartan", sans-serif;
 }
 
 .jumbotron {
-    background: transparent;
-
+  background: transparent;
 }
 
-#first{
-    text-align: left;
+#first {
+  text-align: left;
 }
 
-#second{
-    text-align: right;
+#second {
+  text-align: right;
+}
+
+.logo {
+  text-align: top left;
 }

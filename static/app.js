@@ -6,14 +6,17 @@ d3.json("Resources/final_table_json.json").then(function (nbaData) {
   console.log(nbaData);
 
 
-  var samplevalues = nbaData.tm[0];
+  var samplevalues = nbaData.player_values;
   console.log(samplevalues);
-
-  var search = Object.values(nbaData);
+ 
+  var search = Object.values(nbaData.player);
   console.log(search);
 
-  players = nbaData.map(data => data.Player);
-  console.log(players)
+  // players = nbaData.map(data => data.Player);
+  // console.log(players)
+
+  let sample_teams = search.filter(s => s.tm=== s.tm)[1];
+  console.log(sample_teams);
 
   var teams = nbaData.map(data => data.tm)[0];
   console.log(teams);

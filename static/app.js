@@ -1,27 +1,37 @@
 // Create function for Data plotting (Bar, gauge, bubble)
 
-d3.csv("Resources/csv_files/final_table.csv").then(function (nbaData) {
+// d3.csv("Resources/csv_files/final_table.csv").then(function (nbaData) {
+//   console.log(nbaData);
+d3.json("Resources/nba_stats.json").then(function (nbaData) {
   console.log(nbaData);
 
-  // var search = Object.values(nbaData.money);
-  // console.log(search);
 
-  players = nbaData.map(data => data.player);
+  var samplevalues = nbaData.tm[0];
+  console.log(samplevalues);
+
+  var search = Object.values(nbaData);
+  console.log(search);
+
+  players = nbaData.map(data => data.Player);
   console.log(players)
 
   var teams = nbaData.map(data => data.tm)[0];
-  console.log(teams)
+  console.log(teams);
   
-  
-  
+
   var salary = nbaData.map(data => data.yr2019_20);
   console.log(salary)
 
-  var samplevalues = nbaData.map(data => data.tm).slice(0, 30).reverse();
+  var samplevalues = nbaData.map(data => data.tm).slice().reverse();
   console.log(samplevalues);
+
+  
+  let unique = samplevalues.filter((item, i, ar) => ar.indexOf(item) === i)[0];
+  console.log(unique);
 
   var salary_sample = teams.team_values;
   console.log(salary_sample);
+  var labels = samples.otu_labels.slice(0, 10);
 
 
 
@@ -60,7 +70,7 @@ let dropdown = d3.select("#selDataset");
 
     d3.csv("Resources/csv_files/final_table.csv").then((data) => {
         console.log(data);
-        data.tm.forEach(function (teams) {
+        data.columns.forEach(function (teams) {
             dropdown.append("option").text(teams).property("value")
             console.log(teams)
         })
@@ -72,8 +82,8 @@ let dropdown = d3.select("#selDataset");
 }
 
 init();
-drops(940);
-optionChanged = drops
+// drops(940);
+// optionChanged = drops
 
 // function getPlot(id) {
 //   // getting data from the json file

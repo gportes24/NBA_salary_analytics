@@ -2,7 +2,7 @@
 
 // d3.csv("Resources/csv_files/final_table.csv").then(function (nbaData) {
 //   console.log(nbaData);
-d3.json("Resources/nba_stats.json").then(function (nbaData) {
+d3.json("Resources/final_table_json.json").then(function (nbaData) {
   console.log(nbaData);
 
 

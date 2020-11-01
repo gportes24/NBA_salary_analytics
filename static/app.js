@@ -2,20 +2,23 @@
 
 // d3.csv("Resources/csv_files/final_table.csv").then(function (nbaData) {
 //   console.log(nbaData);
-d3.json("Resources/final_table_json.json").then(function (nbaData) {
+d3.json("Resources/basketball_table.json").then(function (nbaData) {
   console.log(nbaData);
 
 
-  var samplevalues = nbaData.player_values;
+  var samplevalues = nbaData.player;
   console.log(samplevalues);
  
-  var search = Object.values(nbaData.player);
+  var search = Object.values(nbaData);
   console.log(search);
 
-  // players = nbaData.map(data => data.Player);
-  // console.log(players)
+  let teams_default = nbaData.tm.filter(s => s.tm === s.tm)[1];
+  console.log(teams_default)
 
-  let sample_teams = search.filter(s => s.tm=== s.tm)[1];
+  players = nbaData.map(data => data.Player);
+  console.log(players)
+
+  let sample_teams = search.filter(s => s.tm=== s.tm)[0];
   console.log(sample_teams);
 
   var teams = nbaData.map(data => data.tm)[0];
@@ -71,7 +74,7 @@ function init() {
 
 let dropdown = d3.select("#selDataset");
 
-    d3.csv("Resources/csv_files/final_table.csv").then((data) => {
+    d3.csv("Resources/basketball_table.json").then((data) => {
         console.log(data);
         data.columns.forEach(function (teams) {
             dropdown.append("option").text(teams).property("value")

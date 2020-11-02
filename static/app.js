@@ -1,48 +1,78 @@
 // Create function for Data plotting (Bar, gauge, bubble)
+// d3.json("Resources/basketball_table.json").then(function (data) {
+//   console.log(data)
+//   let players = Object.values(data.Player);
+//   console.log(players);
+// });
 
-// d3.csv("Resources/csv_files/final_table.csv").then(function (nbaData) {
-//   console.log(nbaData);
+
+
 d3.json("Resources/basketball_table.json").then(function (nbaData) {
   console.log(nbaData);
+  mo= nbaData[0]["tm"];
+  console.log(mo);
 
-
-  var samplevalues = nbaData.player;
-  console.log(samplevalues);
+  for(var i = 0; i < nbaData.length; i++) {
+    teams =(nbaData[i].tm);
+    // console.log(teams);
+    
+    unique_teams = [...new Set(teams)];
+    // console.log(unique_teams);
+  }
  
-  var search = Object.values(nbaData);
+
+
+  // let unique = nbaData.tm.filter((item, i, ar) => ar.indexOf(item) === i)[0];
+  // console.log(unique);
+
+  dataset = JSON.stringify(nbaData);
+  trying = JSON.parse(dataset);
+  console.log(trying[0]["tm"]);
+  console.log(trying);
+
+  var samplevalues = nbaData["tm"];
+  console.log(samplevalues);
+
+  // var sample_filter = nbaData[0].filter(s => s.toString() === s.Player)[0];
+  // console.log(sample_filter)
+
+  var tmplayers = nbaData.samplevalues;
+  console.log(tmplayers);
+
+  var search = Object.values(nbaData.tm);
   console.log(search);
 
-  let teams_default = nbaData.tm.filter(s => s.tm === s.tm)[1];
+  let teams_default = nbaData[0].filter(s => s.tm.toString() === s.tm)[0];
   console.log(teams_default)
 
   players = nbaData.map(data => data.Player);
   console.log(players)
 
-  let sample_teams = search.filter(s => s.tm=== s.tm)[0];
+  let sample_teams = search.filter(s => s.tm === s.tm)[0];
   console.log(sample_teams);
 
   var teams = nbaData.map(data => data.tm)[0];
   console.log(teams);
-  
+
 
   var salary = nbaData.map(data => data.yr2019_20);
   console.log(salary)
 
-  var samplevalues = nbaData.map(data => data.tm).slice().reverse();
-  console.log(samplevalues);
+  // var samplevalues = nbaData.map(data => data.tm).slice().reverse();
+  // console.log(samplevalues);
 
-  
-  let unique = samplevalues.filter((item, i, ar) => ar.indexOf(item) === i)[0];
-  console.log(unique);
 
-  var salary_sample = teams.team_values;
-  console.log(salary_sample);
-  var labels = samples.otu_labels.slice(0, 10);
+  // let unique = samplevalues.filter((item, i, ar) => ar.indexOf(item) === i)[0];
+  // console.log(unique);
+
+  // var salary_sample = teams.team_values;
+  // console.log(salary_sample);
+  // var labels = samples.otu_labels.slice(0, 10);
 
 
 
   var trace = {
-    x: samplevalues,
+    x: mo,
     y: salary,
     type: "bar",
     orientation: "h",
@@ -72,17 +102,17 @@ d3.json("Resources/basketball_table.json").then(function (nbaData) {
 
 function init() {
 
-let dropdown = d3.select("#selDataset");
+  let dropdown = d3.select("#selDataset");
 
-    d3.csv("Resources/basketball_table.json").then((data) => {
-        console.log(data);
-        data.columns.forEach(function (teams) {
-            dropdown.append("option").text(teams).property("value")
-            console.log(teams)
-        })
-        
+  d3.csv("Resources/basketball_table.json").then((data) => {
+    console.log(data);
+    data.columns.forEach(function (teams) {
+      dropdown.append("option").text(teams).property("value")
+      console.log(teams)
     })
-    
+
+  })
+
 
 
 }

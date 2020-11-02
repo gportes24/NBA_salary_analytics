@@ -9,16 +9,24 @@
 
 d3.json("Resources/basketball_table.json").then(function (nbaData) {
   console.log(nbaData);
-  mo= nbaData[0]["tm"];
+  mo= nbaData["tm"];
   console.log(mo);
+  let teamnames =new Set;
+  for(var i = 0; i < nbaData.length-1; i++) {
+    // console.log(nbaData[i]["tm"]);
+    teamnames.add(nbaData[i]['tm'])
 
-  for(var i = 0; i < nbaData.length; i++) {
-    teams =(nbaData[i].tm);
+
+
+    // teams =(nbaData[i].tm);
     // console.log(teams);
     
-    unique_teams = [...new Set(teams)];
+    // unique_teams = [...new Set(teams)];
     // console.log(unique_teams);
   }
+  console.log(teamnames);
+
+  
  
 
 

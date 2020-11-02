@@ -1,9 +1,4 @@
 // Create function for Data plotting (Bar, gauge, bubble)
-// d3.json("Resources/basketball_table.json").then(function (data) {
-//   console.log(data)
-//   let players = Object.values(data.Player);
-//   console.log(players);
-// });
 
 
 
@@ -12,34 +7,85 @@ d3.json("Resources/basketball_table.json").then(function (nbaData) {
   mo= nbaData["tm"];
   console.log(mo);
   let teamnames =new Set;
+  let teamStats = new Set;
   for(var i = 0; i < nbaData.length-1; i++) {
-    // console.log(nbaData[i]["tm"]);
-    teamnames.add(nbaData[i]['tm'])
-
-
-
-    // teams =(nbaData[i].tm);
-    // console.log(teams);
-    
-    // unique_teams = [...new Set(teams)];
-    // console.log(unique_teams);
+    console.log(nbaData[i]);
+    teamnames.add(nbaData[i]['tm']) ;
+    teamStats.add(nbaData[i]);
   }
   console.log(teamnames);
+  teamnames=[...teamnames]
+  console.log(teamnames)
+  teamStats = [...teamStats];
+  console.log(teamStats);
+  var salary = nbaData.map(data => data.yr2019_20);
+  console.log(salary);
 
+  var salary_10 = salary.slice(0, 10).reverse();
+  console.log(salary_10);
+
+  players = nbaData.map(data => data.Player);
+  console.log(players);
+
+  labels = players.slice(0,10).reverse();
+  console.log(labels);
   
+  teams_filter = teamStats.filter(h => h.tm===h.tm)[0];
+  console.log(teams_filter);
+
+  let salaries = teams_filter.yr2019_20;
+  console.log(salaries);
+  // let salary_labels = salaries.map(o=> "Player" + o);
+  // console.log(`yr2019_20: ${salaries}`);
+
+
+
+  var trace = {
+    x: mo,
+    y: salary_10,
+    type: "bar",
+    text: players,
+    orientation: "h",
+
+  };
+  var data = [trace];
+
+  var layout = {
+    title: "NBA TEAMS",
+    yaxis: {
+      tickmode: "linear",
+    },
+    margin: {
+      l: 100,
+      r: 100,
+      t: 100,
+      b: 10
+    }
+  };
+
+  Plotly.newPlot("bar", data, layout);
+  
+function init() {
+  let dropdown = d3.select("#selDataset");
+  d3.json("Resources/basketball_table.json").then((data)=>{
+    console.log(data);
+
+  })
+}
+
  
 
 
   // let unique = nbaData.tm.filter((item, i, ar) => ar.indexOf(item) === i)[0];
   // console.log(unique);
 
-  dataset = JSON.stringify(nbaData);
-  trying = JSON.parse(dataset);
-  console.log(trying[0]["tm"]);
-  console.log(trying);
+  // dataset = JSON.stringify(nbaData);
+  // trying = JSON.parse(dataset);
+  // console.log(trying[0]["tm"]);
+  // console.log(trying);
 
-  var samplevalues = nbaData["tm"];
-  console.log(samplevalues);
+  // var samplevalues = nbaData["tm"];
+  // console.log(samplevalues);
 
   // var sample_filter = nbaData[0].filter(s => s.toString() === s.Player)[0];
   // console.log(sample_filter)
@@ -81,7 +127,8 @@ d3.json("Resources/basketball_table.json").then(function (nbaData) {
 
   var trace = {
     x: mo,
-    y: salary,
+    y: salary_10,
+    text: labels,
     type: "bar",
     orientation: "h",
 
@@ -89,7 +136,7 @@ d3.json("Resources/basketball_table.json").then(function (nbaData) {
   var data = [trace];
 
   var layout = {
-    title: "Top 10 OTU",
+    title: "NBA TEAMS",
     yaxis: {
       tickmode: "linear",
     },
@@ -98,7 +145,8 @@ d3.json("Resources/basketball_table.json").then(function (nbaData) {
       r: 100,
       t: 100,
       b: 10
-    }
+    },
+    text: pla_labels
   };
 
   Plotly.newPlot("bar", data, layout);
@@ -108,24 +156,24 @@ d3.json("Resources/basketball_table.json").then(function (nbaData) {
 
 });
 
-function init() {
+// function init() {
 
-  let dropdown = d3.select("#selDataset");
+//   let dropdown = d3.select("#selDataset");
 
-  d3.csv("Resources/basketball_table.json").then((data) => {
-    console.log(data);
-    data.columns.forEach(function (teams) {
-      dropdown.append("option").text(teams).property("value")
-      console.log(teams)
-    })
+//   d3.csv("Resources/basketball_table.json").then((data) => {
+//     console.log(data);
+//     data.columns.forEach(function (teams) {
+//       dropdown.append("option").text(teams).property("value")
+//       console.log(teams)
+//     })
 
-  })
+//   })
 
 
 
-}
+// }
 
-init();
+// init();
 // drops(940);
 // optionChanged = drops
 

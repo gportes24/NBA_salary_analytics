@@ -5,6 +5,9 @@ function getdata(tm) {
     var trying = Object.values(nbaData);
     console.log(trying);
 
+    var grouped = Object.fromEntries(Object.entries(nbaData).filter(([k,v]) => v="tm"))[0];
+    console.log(grouped);
+    
     //this creates a list of unique teams
     let teamnames = new Set;
     let teamStats = new Set;
@@ -21,7 +24,12 @@ function getdata(tm) {
     let tmlist = Array.from(teamnames);
     console.log(tmlist);
 
-    var filtered = nbaData.filter(a => a.tm === teamnames[0]);
+    
+
+    let sample_filter = nbaData.filter(t => t.tm.toString() === t.tm)[0];
+    console.log(sample_filter)
+
+    var filtered = nbaData.filter(a => a.tm == teamnames[0]);
     console.log(filtered);
 
     var salary_test = filtered.filter(s => s.Player == s.Player);
@@ -31,7 +39,7 @@ function getdata(tm) {
     var points = salary_test.map(data => data.pts);
     console.log(points);
 
-    difTeam = salary_test.map(data=> data.tm)[0];
+    difTeam = nbaData.map(data=> data.tm)[1];
     console.log(difTeam)
 
     var per = salary_test.map(data => data.PER);

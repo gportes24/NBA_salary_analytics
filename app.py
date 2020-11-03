@@ -15,7 +15,7 @@ def index():
     hoops = mongo.db.hoops
     output = []
     for h in hoops.find():
-        output.append({"Player": h['Player'], "tm": h["tm"], "yr2019_20": h["yr2019_20"]})
+        output.append({"Player": h['Player'], "tm": h["tm"], "salary": h["yr2019_20"]})
     return jsonify({"result" : output})
     print(h)
         
@@ -29,7 +29,7 @@ def location():
     locations = mongo.db.location
     output= []
     for l in locations.find():
-        output.append({"team": l['team'], "2019-29": l['2019-20'], "city" : l["city"], "coordinates":l["coordinates"]})
+        output.append({"team": l['team'], "salary": l['2019-20'], "city" : l["city"], "coordinates":l["coordinates"]})
     return jsonify({"result" : output})
     print (l)
 

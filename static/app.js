@@ -1,5 +1,5 @@
 // Create function for Data plotting (Bar, gauge, bubble)
-function getdata(teams) {
+function getdata(tm) {
   d3.json("Resources/basketball_table.json").then(function (nbaData) {
     console.log(nbaData);
     var trying = Object.values(nbaData);
@@ -18,8 +18,10 @@ function getdata(teams) {
     console.log(teamnames)
     teamStats = [...teamStats];
     console.log(teamStats);
+    let tmlist = Array.from(teamnames);
+    console.log(tmlist);
 
-    var filtered = nbaData.filter(a => a.tm === teamnames[17]);
+    var filtered = nbaData.filter(a => a.tm === teamnames[0]);
     console.log(filtered);
 
     var salary_test = filtered.filter(s => s.Player == s.Player);
@@ -80,8 +82,8 @@ function getdata(teams) {
   });
 
 }
-function optionChanged(teams) {
-  getdata(teams);
+function optionChanged(tm) {
+  getdata(tm);
 }
 function init() {
   let dropdown = d3.select("#selDataset");

@@ -86,6 +86,24 @@ function getdata(tm) {
     }
     Plotly.newPlot("bubble", data1, layout)
 
+    let trace2 = [
+    {
+      domain: { x: [0, 1], y: [0,1] }, 
+      value: per,
+      title: { text: "PER"},
+      type: "indicator",
+      mode: "guage+number"
+      }
+    ];
+    var layout = { width: 600, height: 500, margin: { t: 0, b: 0, } 
+  };
+    Plotly.newPlot("guage", data, layout);
+
+
+
+
+
+
   });
 
 }

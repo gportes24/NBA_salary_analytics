@@ -69,6 +69,9 @@ function getdata(tm) {
     };
 
     Plotly.newPlot("bar", data, layout);
+    
+    
+    
     let trace1 = {
       x: salary,
       y: points,
@@ -86,20 +89,34 @@ function getdata(tm) {
     }
     Plotly.newPlot("bubble", data1, layout)
 
-    let trace2 = [
-    {
-      domain: { x: [0, 1], y: [0,1] }, 
-      value: per,
-      title: { text: "PER"},
-      type: "indicator",
-      mode: "guage+number"
-      }
-    ];
-    var layout = { width: 600, height: 500, margin: { t: 0, b: 0, } 
-  };
-    Plotly.newPlot("guage", data, layout);
+    var data2 = [{
+      values: salary,
+      labels: player_list,
+      type: "pie"
+    }];
+
+    var layout = {
+      height: 400,
+      width: 500
+    };
+
+    Plotly.newPlot('gauge', data2, layout);
 
 
+  //   let trace2 = [
+  //   {
+  //     domain: { x: [0, 1], y: [0,1] }, 
+  //     value: per,
+  //     title: { text: "PER"},
+  //     type: "indicator",
+  //     mode: ""
+  //     }
+  //   ];
+  //   var layout = { width: 600, height: 500, margin: { t: 0, b: 0, } 
+  // };
+  //   Plotly.newPlot("guage", data, layout);
+
+    
 
 
 

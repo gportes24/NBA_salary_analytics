@@ -1,14 +1,15 @@
 // Create function for Data plotting (Bar, gauge, bubble)
 function getdata(tm) {
   d3.json("Resources/basketball_table.json").then(function (nbaData) {
-    console.log(nbaData);
-    var trying = Object.values(nbaData);
-    console.log(trying);
+    // console.log(nbaData);
+    // var trying = Object.values(nbaData);
+    // console.log(trying);
 
-    var grouped = Object.fromEntries(Object.entries(nbaData).filter(([k,v]) => v="tm"))[0];
-    console.log(grouped);
+    var grouped = Object.fromEntries(Object.entries(nbaData).filter(([k,v]) => v="tm"));
+    // console.log(grouped);
     
-    //This creates a unique list of Team names//
+    
+    //this creates a list of unique teams
     let teamnames = new Set;
     let teamStats = new Set;
     for (var i = 0; i < nbaData.length - 1; i++) {
@@ -25,19 +26,15 @@ function getdata(tm) {
     console.log(tmlist);
 
     
-    //Filter
-    let sample_filter = nbaData.filter(t => t.tm.toString() === t.tm)[0];
-    console.log(sample_filter)
 
-    var filtered = nbaData.filter(a => a.tm == teamnames[0]);
+
+    var filtered = nbaData.filter(a => a.tm == tm);
     console.log(filtered);
 
     var salary_test = filtered.filter(s => s.Player == s.Player);
     console.log(salary_test);
-    
     var player_list = salary_test.map(data => data.Player);
     console.log(player_list);
-    
     var points = salary_test.map(data => data.pts);
     console.log(points);
 
@@ -51,17 +48,16 @@ function getdata(tm) {
     console.log(salary);
 
 
-
-
-    //Bar Graph
     var trace = {
       x: salary,
       y: player_list,
       type: "bar",
       text: player_list,
       orientation: "h",
+
     };
     var data = [trace];
+
     var layout = {
       title: "NBA Salary by Team",
       margin: {
@@ -71,28 +67,8 @@ function getdata(tm) {
         b: 10
       },
     };
+
     Plotly.newPlot("bar", data, layout);
-
-
-
-    //Guage Graph
-    let trace2 = [
-      {
-          domain: { x: [0, 1], y: [0,1] }, 
-          value: per,
-          title: { text: "PER"},
-          type: "indicator",
-          mode: "guage+number"
-      }
-    ];
-    var layout = { width: 600, height: 500, margin: { t: 0, b: 0, } 
-  };
-    Plotly.newPlot("guage", data, layout);
-
-
-    
-
-    //Bubble Graph
     let trace1 = {
       x: salary,
       y: points,
@@ -107,13 +83,12 @@ function getdata(tm) {
     let data1 = [trace1];
     var layout = {
       title: "NBA Salary"
-    };
+    }
     Plotly.newPlot("bubble", data1, layout)
+
   });
 
 }
-
-//Functions 
 function optionChanged(tm) {
   getdata(tm);
 }

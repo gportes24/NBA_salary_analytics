@@ -15,35 +15,38 @@ L.tileLayer('https://{s}.tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=
   accessToken: access_token
 }).addTo(myMap);
 
-var teams = [
-  {
-    team: "Philadelphia 76ers",
-    coords: [39.9011, -75.1719],  
-    salary: 130273147,
-    city: "Philadelphia, PA"
-  },
-  {
-    team: "Washington Wizards",
-    coords: [38.8981, -77.0208],
-    salary: 131014920,
-    city: "Washington, D.C."
-  }
-];
+// var teams = [
+//   {
+//     team: "Philadelphia 76ers",
+//     coords: [39.9011, -75.1719],  
+//     salary: 130273147,
+//     city: "Philadelphia, PA"
+//   },
+//   {
+//     team: "Washington Wizards",
+//     coords: [38.8981, -77.0208],
+//     salary: 131014920,
+//     city: "Washington, D.C."
+//   }
+// ];
 
 function markerSize(salary) {
   return salary / 1000;
-}
+};
 
-for (var i = 0; i < teams.length; i++) {
-  L.circle(teams[i].coords, {
-    fillOpacity: 0.50,
-    color: "darkorange",
-    fillColor: "orange",
-    radius: markerSize(teams[i].salary)
-  }).bindPopup("<h3> " + teams[i].team + "</h3> <h4>Total Salary: </h4> $" + teams[i].salary).addTo(myMap);
-}
-// var sidebar = L.control.sidebar('sidebar', {
-//   position: 'left'
-// });
 
-// map.addControl(sidebar);
+var locations = "/locations";
+
+d3.json(locations, function (data) {
+  console.log(data.result[2].coordinates);
+  for (var i = 0; i < data.result.length; i++) {
+    console.log(data.result[i].team)
+    L.circle(data.result[i].coordinates, {
+      fillOpacity: 0.50,
+      color: "darkorange",
+      fillColor: "orange",
+      radius: markerSize(data.result[i].salary),
+    }).bindPopup("<h3> " + data.result[i].team + "</h3> <h4>Total Salary: </h4> $" + data.result[i].salary).addTo(myMap);
+  };
+
+});

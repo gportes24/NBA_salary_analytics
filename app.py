@@ -27,7 +27,12 @@ def location():
     locations = mongo.db.location
     output= []
     for l in locations.find():
-        output.append({"team": l['team'], "salary": l['2019-20'], "city" : l["city"], "coordinates":l["coordinates"]})
+        salary = l['2019-20'][1:].replace(",", "")
+        salary = int(salary)
+        coordinates = l["coordinates"].split(", ")
+        lat = float(coordinates[0])
+        long = float(coordinates[1])
+        output.append({"team": l['team'], "salary": salary, "city" : l["city"], "coordinates": {"lat": lat, "lng": long}})
     return jsonify({"result" : output})
 
 @app.route("/map", methods = ['GET'])

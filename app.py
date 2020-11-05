@@ -29,10 +29,11 @@ def location():
     for l in locations.find():
         salary = l['2019-20'][1:].replace(",", "")
         salary = int(salary)
+        per_avg = round(float(l["PER_AVG"]),4)
         coordinates = l["coordinates"].split(", ")
         lat = float(coordinates[0])
         long = float(coordinates[1])
-        output.append({"team": l['team'], "salary": salary, "city" : l["city"], "coordinates": {"lat": lat, "lng": long}})
+        output.append({"team": l['team'], "salary": salary, "pretty": l['2019-20'], "city" : l["city"], "coordinates": {"lat": lat, "lng": long}, "TM": l["TM"], "per_avg": per_avg})
     return jsonify({"result" : output})
 
 @app.route("/map", methods = ['GET'])

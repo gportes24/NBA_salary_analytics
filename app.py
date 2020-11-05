@@ -16,12 +16,10 @@ def index():
     output = []
     for h in hoops.find():
         output.append({"Player": h['Player'], "tm": h["tm"], "salary": h["yr2019_20"]})
-    return jsonify({"result" : output})
-    print(h)
-        
+    return jsonify({"result" : output})   
                     
 
-    return render_template("index.html", hoops=hoops)
+    # return render_template("index.html", hoops=hoops)
 
 @app.route("/locations", methods=['GET'])
 def location():
@@ -31,10 +29,11 @@ def location():
     for l in locations.find():
         output.append({"team": l['team'], "salary": l['2019-20'], "city" : l["city"], "coordinates":l["coordinates"]})
     return jsonify({"result" : output})
-    print (l)
 
+@app.route("/map", methods = ['GET'])
+def maps():
 
-    return render_templace("index.html", locations=locations)
+    return render_template("map.html", map = map)
     
 if __name__ == "__main__":
     app.run(debug=True)

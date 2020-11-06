@@ -9,8 +9,8 @@ app.config["MONGO_URI"]= "mongodb://localhost:27017/horse"
 mongo =PyMongo(app)
 
 
-@app.route("/hoops", methods=['GET'])
-def hoops():
+@app.route("/", methods=['GET'])
+def index():
     # find one record of the data from the mongo db
     hoops = mongo.db.hoops
     output = []
@@ -41,9 +41,9 @@ def maps():
 
     return render_template("map.html", map = map)
 
-@app.route("/")
+@app.route("/main")
 def index():
-    return render_template("index.html", index=index)
+    return render_template("index.html")
     
 if __name__ == "__main__":
     app.run(debug=True)

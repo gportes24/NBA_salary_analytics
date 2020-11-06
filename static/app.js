@@ -31,7 +31,7 @@ function getdata(tm) {
     var filtered = nbaData.filter(a => a.tm == tm);
     console.log(filtered);
 
-    var salary_test = filtered.filter(s => s.Player == s.Player);
+    var salary_test = filtered.filter(s => s.yr2019_20.toString()==s.yr2019_20);
     console.log(salary_test);
     var player_list = salary_test.map(data => data.Player);
     console.log(player_list);
@@ -45,7 +45,11 @@ function getdata(tm) {
     console.log(per);
 
     var salary = salary_test.map(data => data.yr2019_20);
+    // var salary = salary.toString();
     console.log(salary);
+
+    var salary1 = [... new Set(salary)];
+    console.log(salary1);
 
 
     var trace = {
@@ -60,6 +64,9 @@ function getdata(tm) {
 
     var layout = {
       title: "NBA Salary by Team",
+      xaxis:{
+        type:'category-unique'
+        },
       margin: {
         l: 100,
         r: 100,

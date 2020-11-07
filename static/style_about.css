@@ -1,14 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@300&display=swap");
 
 body {
-  background-image: url("http://kusg.de/wp-content/uploads/2017/01/wallpaper-basketball4-1050x591.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: blanchedalmond;
-  text-align: justify;
-  font-family: "Spartan", sans-serif;
+    background-color: black;
+    color: blanchedalmond;
+    text-align: left;
+    font-family: "Spartan", sans-serif;
 }
 
+.line {
+    color: whitesmoke;
+}
 /* CSSTerm.com Horizontal Easy DropDown CSS menu */
 
 .drop_menu {
@@ -51,23 +52,8 @@ body {
 	background-color:transparent;
 }
 .drop_menu li:hover ul li a:hover { background:blanchedalmond; opacity: 0.8; color: black; transition: opacity .25s ease-in-out;  }
+
 .jumbotron {
-  background: transparent;
-  margin-top: 0%;
+    background-color: transparent;
+
 }
-
-#first {
-  text-align: left;
-}
-
-#second {
-  text-align: right;
-}
-
-.logo {
-  text-align: top left;
-}
-
-
-
-

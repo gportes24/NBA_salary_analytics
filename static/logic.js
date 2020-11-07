@@ -61,6 +61,7 @@ legend.onAdd = function (map) {
   div.innerHTML += '<i style="background: #8AC926"></i><span>15 - 15.99</span><br>';
   div.innerHTML += '<i style="background: #FFCA3A"></i><span>13 - 14.99</span><br>';
   div.innerHTML += '<i style="background: #FF595E"></i><span>Below 13</span><br>';
+  div.innerHTML += '<h4><a href ="main.html">Return to Main Menu</a></h4>';
   
   return div;
 };

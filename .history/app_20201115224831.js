@@ -3,9 +3,9 @@ function getdata(tm) {
   d3.json("Resources/basketball_table.json").then(function (nbaData) {
     // console.log(nbaData);
     // var trying = Object.values(nbaData);
-    // // console.log(trying);
-    // var code = nbaData.value();
-    // console.log(code);
+    // console.log(trying);
+    var code = nbaData.value();
+    console.log(code);
 
     var grouped = Object.fromEntries(Object.entries(nbaData).filter(([k,v]) => v="tm"));
     // console.log(grouped);
@@ -53,6 +53,7 @@ function getdata(tm) {
     var salary1 = [... new Set(salary)];
     console.log(salary1);
 
+
     for (i = 1; i < player_list.length; i++) {
       if(player_list[0] == player_list[i]){
         player_list = player_list.slice(0,i);
@@ -61,6 +62,7 @@ function getdata(tm) {
         console.log(player_list);
       }
     }
+
 
     var trace = {
       x: salary,

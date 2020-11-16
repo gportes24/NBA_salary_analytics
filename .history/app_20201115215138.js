@@ -3,9 +3,9 @@ function getdata(tm) {
   d3.json("Resources/basketball_table.json").then(function (nbaData) {
     // console.log(nbaData);
     // var trying = Object.values(nbaData);
-    // // console.log(trying);
-    // var code = nbaData.value();
-    // console.log(code);
+    // console.log(trying);
+    var code = nbaData.value();
+    console.log(code);
 
     var grouped = Object.fromEntries(Object.entries(nbaData).filter(([k,v]) => v="tm"));
     // console.log(grouped);
@@ -53,14 +53,6 @@ function getdata(tm) {
     var salary1 = [... new Set(salary)];
     console.log(salary1);
 
-    for (i = 1; i < player_list.length; i++) {
-      if(player_list[0] == player_list[i]){
-        player_list = player_list.slice(0,i);
-        salary = salary.slice(0, i);
-        console.log(player_list);
-        console.log(player_list);
-      }
-    }
 
     var trace = {
       x: salary,
@@ -156,11 +148,11 @@ function init() {
       teamnames.add(data[i]['tm']);
       teamStats.add(data[i]);
     }
-    // console.log(teamnames);
+    console.log(teamnames);
     teamnames = [...teamnames]
-    // console.log(teamnames)
+    console.log(teamnames)
     teamStats = [...teamStats];
-    // console.log(teamStats);
+    console.log(teamStats);
     teamnames.forEach(function (team) {
       dropdown.append("option").text(team).property("value")
       console.log(team)

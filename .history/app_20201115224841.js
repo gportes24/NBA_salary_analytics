@@ -3,9 +3,9 @@ function getdata(tm) {
   d3.json("Resources/basketball_table.json").then(function (nbaData) {
     // console.log(nbaData);
     // var trying = Object.values(nbaData);
-    // // console.log(trying);
-    // var code = nbaData.value();
-    // console.log(code);
+    // console.log(trying);
+    var code = nbaData.value();
+    console.log(code);
 
     var grouped = Object.fromEntries(Object.entries(nbaData).filter(([k,v]) => v="tm"));
     // console.log(grouped);
